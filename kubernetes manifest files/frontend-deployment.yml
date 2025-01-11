@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: front-end
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: front-end
+  minReadySeconds: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+    maxUnavailable: 1
+    maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: front-end
+    spec:
+      containers:
+      - name: front-end
+        image: migelcepele/clientappfront:v1.0
+        ports:
+        - containerPort: 5173
+        volumeMounts:
+        - name: app-code
+          mountPath: /usr/src/app
+        - name: node-modules
+          mountPath: /usr/src/app/node_modules
+        command: ["npm", "run", "dev"]
+      volumes:
+      - name: app-code
+        hostPath:
+          path: ./react
+      - name: node-modules
+        emptyDir: {}

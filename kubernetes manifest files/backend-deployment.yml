@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: back-end
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: back-end
+  minReadySeconds: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+    maxUnavailable: 1
+    maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: back-end
+    spec:
+      containers:
+      - name: back-end
+        image: migelcepele/clientappback:v1.0
+        ports:
+        - containerPort: 3000
+        env:
+        - name: POSTGRES_USER
+            valueFrom:
+              secretKeyRef:
+                name: postgres-secret
+                key: POSTGRES_USER
+        - name: POSTGRES_HOST
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: POSTGRES_HOST
+        - name: POSTGRES_DB
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: POSTGRES_DB
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: POSTGRES_PASSWORD       
+        - name: POSTGRES_PORT
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: POSTGRES_PORT
+        volumeMounts:
+        - name: app-code
+          mountPath: /usr/src/app
+        - name: node-modules
+          mountPath: /usr/src/app/node_modules
+        command: ["npm", "run", "start"]
+      volumes:
+      - name: app-code
+        hostPath:
+          path: ./node
+      - name: node-modules
+        emptyDir: {}
