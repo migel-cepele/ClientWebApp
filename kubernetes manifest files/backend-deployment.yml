@@ -25,10 +25,10 @@ spec:
         - containerPort: 3000
         env:
         - name: POSTGRES_USER
-            valueFrom:
-              secretKeyRef:
-                name: postgres-secret
-                key: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: POSTGRES_USER
         - name: POSTGRES_HOST
           valueFrom:
             secretKeyRef:
