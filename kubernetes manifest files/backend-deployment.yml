@@ -58,6 +58,6 @@ spec:
       volumes:
       - name: app-code
         hostPath:
-          path: ./node
+          path: /usr/src/app/node
       - name: node-modules
         emptyDir: {}

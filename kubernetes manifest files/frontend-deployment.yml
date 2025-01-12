@@ -32,6 +32,6 @@ spec:
       volumes:
       - name: app-code
         hostPath:
-          path: ./react
+          path: /usr/src/app/react
       - name: node-modules
         emptyDir: {}
