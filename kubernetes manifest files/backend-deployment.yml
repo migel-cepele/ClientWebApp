@@ -49,15 +49,3 @@ spec:
             secretKeyRef:
               name: postgres-secret
               key: POSTGRES_PORT
-        volumeMounts:
-        - name: app-code
-          mountPath: /usr/src/app
-        - name: node-modules
-          mountPath: /usr/src/app/node_modules
-        command: ["npm", "run", "start"]
-      volumes:
-      - name: app-code
-        hostPath:
-          path: /usr/src/app/node
-      - name: node-modules
-        emptyDir: {}

@@ -23,15 +23,3 @@ spec:
         image: migelcepele/clientappfront:v1.0
         ports:
         - containerPort: 5173
-        volumeMounts:
-        - name: app-code
-          mountPath: /usr/src/app
-        - name: node-modules
-          mountPath: /usr/src/app/node_modules
-        command: ["npm", "run", "dev"]
-      volumes:
-      - name: app-code
-        hostPath:
-          path: /usr/src/app/react
-      - name: node-modules
-        emptyDir: {}
