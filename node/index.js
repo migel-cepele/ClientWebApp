@@ -3,6 +3,12 @@ import pg from 'pg';
 import express from 'express';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
+import cors from 'cors'
+
+const corsOptions = {
+  //origin: ["http://localhost:5173"],
+  origin: [process.env.FRONTEND_HOST],
+};
 
 
 dotenv.config();
@@ -39,6 +45,7 @@ createTable();
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors(corsOptions));
 
 
 //vendosim nje route aksesimi, qe by default kthen "Hello world"

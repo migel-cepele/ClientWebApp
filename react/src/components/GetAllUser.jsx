@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
+
+const API_URL = import.meta.env.VITE_API_URL;
 //komponent qe do te marri te gjithe users
 const GetAllUser = () => {
 
@@ -8,7 +10,7 @@ const GetAllUser = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/all")
+      .get(`${API_URL}/api/all`)
       .then((response) => setAllUser(response.data))
       .catch((err) => {
         console.error(err);

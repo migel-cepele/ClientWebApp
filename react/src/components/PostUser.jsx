@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 
+const API_URL = import.meta.env.VITE_API_URL;
 const PostUser = () => {
   
     const [user, setUser] = useState({
@@ -11,7 +12,7 @@ const PostUser = () => {
 
     const createUser = async () => {
       await axios
-      .post("http://localhost:8000/api/form", 
+      .post(`${API_URL}/api/form`, 
       user,
       {
         headers: {
