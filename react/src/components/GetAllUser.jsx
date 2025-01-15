@@ -10,7 +10,8 @@ const GetAllUser = () => {
 
   useEffect(() => {
     axios
-      .get(`${API_URL}/api/all`)
+      //.get(`${API_URL}/api/all`)
+      .get('/api/all')
       .then((response) => setAllUser(response.data))
       .catch((err) => {
         console.error(err);

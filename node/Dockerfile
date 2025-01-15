@@ -1,10 +1,11 @@
 FROM node:alpine
 
 #vendosim direktorine e punes
-WORKDIR /usr/src/app
+WORKDIR /app/node
 
 # ne fillim kopjojme paketat e instaluara per ti cache
-COPY package*.json ./
+COPY package.json ./
+COPY package-lock.json ./
 
 #instalojme dependencies
 RUN npm install

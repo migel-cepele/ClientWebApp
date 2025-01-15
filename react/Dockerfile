@@ -1,17 +1,22 @@
 # ndertimi i react app
-FROM node:alpine
+FROM node:alpine AS build
 
 # direktoria ku do punojme
-WORKDIR /usr/src/app
+WORKDIR /app/react
 
 # install dependecies
-COPY package*.json ./
+COPY package.json ./
+COPY package-lock.json ./
+
 RUN npm install
 
 # Copy app code
 COPY . .
 
-#ekspozimi i portes
-EXPOSE 5173
+RUN npm run build
 
-CMD ["npm", "run", "dev"]
+FROM nginx:alpine
+
+COPY --from=build /app/react/dist/ /usr/share/nginx/html
+
+COPY nginx.conf /etc/nginx/conf.d/default.conf

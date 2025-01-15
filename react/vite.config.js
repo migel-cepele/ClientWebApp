@@ -4,6 +4,12 @@ import react from '@vitejs/plugin-react'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  server: {
+    port:5173,
+    proxy: {
+      '/api' : 'http://back-end-service:3000' //per shkak te cors, duhet qe requests ti bejme proxy nga fronti ne back keshtu
+    }
+  }
 })
 
 // https://vitejs.dev/config/

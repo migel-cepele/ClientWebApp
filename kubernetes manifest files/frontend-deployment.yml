@@ -22,4 +22,4 @@ spec:
       - name: front-end
         image: migelcepele/clientappfront:v1.0
         ports:
-        - containerPort: 5173
+        - containerPort: 80
