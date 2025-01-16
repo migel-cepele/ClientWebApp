@@ -12,7 +12,7 @@ const PostUser = () => {
 
     const createUser = async () => {
       await axios
-      .post(`${API_URL}/api/form`, 
+      .post(`/api/form`, 
       user,
       {
         headers: {
