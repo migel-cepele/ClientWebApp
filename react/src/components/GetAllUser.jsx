@@ -4,12 +4,9 @@ import { useEffect, useState } from "react";
 
 //komponent qe do te marri te gjithe users
 const GetAllUser = () => {
-
   const [users, setAllUser] = useState();
-
   useEffect(() => {
     axios
-      //.get(`${API_URL}/api/all`)
       .get('/api/all')
       .then((response) => setAllUser(response.data))
       .catch((err) => {

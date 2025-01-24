@@ -1,9 +1,7 @@
 //importojme dependencies
 import pg from 'pg';
 import express from 'express';
-import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
-import cors from 'cors'
 
 
 dotenv.config();
@@ -50,12 +48,10 @@ app.get('/api', (req, res) => res.send('Hello World!'));
 //query qe merr gjithe users
 app.get('/api/all', async (req, res) => {
     try {
-      const response = await client.query(`SELECT * FROM users`);
-      
+      const response = await client.query(`SELECT * FROM users`);    
       if(response){
         res.status(200).send(response.rows);
-      }
-      
+      }     
     } 
     catch (error) {
       res.status(500).send('Error');
@@ -68,10 +64,8 @@ app.post('/api/form', async (req, res) => {
     try {
       const name  = req.body.name;
       const email = req.body.email;
-      const age   = req.body.age;
-  
-      const response = await client.query(`INSERT INTO users(name, email, age) VALUES ('${name}', '${email}', ${age});`);
-  
+      const age   = req.body.age; 
+      const response = await client.query(`INSERT INTO users(name, email, age) VALUES ('${name}', '${email}', ${age});`); 
       if(response){
         res.status(200).send(req.body);
       }

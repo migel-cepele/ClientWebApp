@@ -1,15 +1,12 @@
 import axios from "axios";
 import { useState } from "react";
 
-const API_URL = import.meta.env.VITE_API_URL;
-const PostUser = () => {
-  
+const PostUser = () => { 
     const [user, setUser] = useState({
       name: '',
       age: '',
       email: '',
     })
-
     const createUser = async () => {
       await axios
       .post(`/api/form`, 
